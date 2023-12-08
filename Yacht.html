@@ -1,0 +1,130 @@
+<html>
+<style>
+  .no-drag{
+    -ms-user-select:none;
+    -moz-user-select:-mozs-none;
+    -webkit-user-selcet:none;
+    -khtml-user-select:none;
+    user-select:none;
+    font-family: '함초롬돋움';
+  }
+
+  td{
+    border:1px solid;
+  }
+  .gametable{
+    margin:0 0 0 15px;
+    font-size:18px;
+    border:2px solid;
+    text-align:center;
+  }
+  .dicetable{
+    width:550px;
+    text-align:center;
+  }
+  #d1, #d2, #d3, #d4, #d5{
+    height:80px;
+    width:74px;
+    font-size:30px;
+    border-radius:15px;
+    border:2px solid;
+  }
+  #htp{
+    z-index:2;
+    border:2px solid;
+    position:absolute;
+    top:30pt;
+    left:450pt;
+    text-align:center;
+    font-size:15px;
+  }
+  #p1{
+    font-style:italic;
+    color:gray;
+    font-size:18px;
+  }
+</style>
+
+<body class="no-drag">
+<script type="text/javascript" src="Scripts/player.js"></script>
+<script type="text/javascript" src="Scripts/system.js"></script>
+<script>
+const player1 = new player(0);
+const player2 = new player(1);
+</script>
+
+<table class="dicetable">
+<tr>
+<td id='d1' onclick='checklock(1)'>D1
+<td id='d2' onclick='checklock(2)'>D2
+<td id='d3' onclick='checklock(3)'>D3
+<td id='d4' onclick='checklock(4)'>D4
+<td id='d5' onclick='checklock(5)'>D5
+<td id='rollcnt' onclick='DiceRoll()'>START
+</table>
+
+<table class='gametable'>
+<tr><td>점수판<td width='140' id='player_1'>Player1<td width='140' id='player_2'>Player2
+
+<tr><td>1
+  <td id='p11' onclick='player1.number(0)' onmouseover='player1.mouse[0]=1, color2()' onmouseout='player1.mouse[0]=0, color2()'>
+  <td id='p21' onclick='player2.number(0)' onmouseover='player2.mouse[0]=1, color2()' onmouseout='player2.mouse[0]=0, color2()'>
+
+<tr><td>2
+  <td id='p12' onclick='player1.number(1)' onmouseover='player1.mouse[1]=1, color2()' onmouseout='player1.mouse[1]=0, color2()'>
+  <td id='p22' onclick='player2.number(1)' onmouseover='player2.mouse[1]=1, color2()' onmouseout='player2.mouse[1]=0, color2()'>
+
+<tr><td>3
+  <td id='p13' onclick='player1.number(2)' onmouseover='player1.mouse[2]=1, color2()' onmouseout='player1.mouse[2]=0, color2()'>
+  <td id='p23' onclick='player2.number(2)' onmouseover='player2.mouse[2]=1, color2()' onmouseout='player2.mouse[2]=0, color2()'>
+
+<tr><td>4
+  <td id='p14' onclick='player1.number(3)' onmouseover='player1.mouse[3]=1, color2()' onmouseout='player1.mouse[3]=0, color2()'>
+  <td id='p24' onclick='player2.number(3)' onmouseover='player2.mouse[3]=1, color2()' onmouseout='player2.mouse[3]=0, color2()'>
+
+<tr><td>5
+  <td id='p15' onclick='player1.number(4)' onmouseover='player1.mouse[4]=1, color2()' onmouseout='player1.mouse[4]=0, color2()'>
+  <td id='p25' onclick='player2.number(4)' onmouseover='player2.mouse[4]=1, color2()' onmouseout='player2.mouse[4]=0, color2()'>
+
+<tr><td>6
+  <td id='p16' onclick='player1.number(5)' onmouseover='player1.mouse[5]=1, color2()' onmouseout='player1.mouse[5]=0, color2()'>
+  <td id='p26' onclick='player2.number(5)' onmouseover='player2.mouse[5]=1, color2()' onmouseout='player2.mouse[5]=0, color2()'>
+
+<tr><td>>=63 (+35)<td id='p17'><td id='p27'>
+
+<tr><td>Three of Kind(눈금의 총합)
+  <td id='p18' onclick='player1.triple()' onmouseover='player1.mouse[7]=1, color2()' onmouseout='player1.mouse[7]=0, color2()'>
+  <td id='p28' onclick='player2.triple()' onmouseover='player2.mouse[7]=1, color2()' onmouseout='player2.mouse[7]=0, color2()'>
+
+<tr><td>Four of Kind(눈금의 총합)
+  <td id='p19' onclick='player1.fourcard()' onmouseover='player1.mouse[8]=1, color2()' onmouseout='player1.mouse[8]=0, color2()'>
+  <td id='p29' onclick='player2.fourcard()' onmouseover='player2.mouse[8]=1, color2()' onmouseout='player2.mouse[8]=0, color2()'>
+
+<tr><td>FullHouse(눈금의 총합)
+  <td id='p110' onclick='player1.fullhouse()' onmouseover='player1.mouse[9]=1, color2()' onmouseout='player1.mouse[9]=0, color2()'>
+  <td id='p210' onclick='player2.fullhouse()' onmouseover='player2.mouse[9]=1, color2()' onmouseout='player2.mouse[9]=0, color2()'>
+
+<tr><td>Small Straight(+15)
+  <td id='p111' onclick='player1.Sstraight()' onmouseover='player1.mouse[10]=1, color2()' onmouseout='player1.mouse[10]=0, color2()'>
+  <td id='p211' onclick='player2.Sstraight()' onmouseover='player2.mouse[10]=1, color2()' onmouseout='player2.mouse[10]=0, color2()'>
+
+<tr><td>Large Straight(+30)
+  <td id='p112' onclick='player1.Lstraight()' onmouseover='player1.mouse[11]=1, color2()' onmouseout='player1.mouse[11]=0, color2()'>
+  <td id='p212' onclick='player2.Lstraight()' onmouseover='player2.mouse[11]=1, color2()' onmouseout='player2.mouse[11]=0, color2()'>
+
+<tr><td>Yachu(+50)
+  <td id='p113' onclick='player1.yachu()' onmouseover='player1.mouse[12]=1, color2()' onmouseout='player1.mouse[12]=0, color2()'>
+  <td id='p213' onclick='player2.yachu()' onmouseover='player2.mouse[12]=1, color2()' onmouseout='player2.mouse[12]=0, color2()'>
+
+<tr><td>Choice(눈금의 총합)
+  <td id='p114' onclick='player1.chance()' onmouseover='player1.mouse[13]=1, color2()' onmouseout='player1.mouse[13]=0, color2()'>
+  <td id='p214' onclick='player2.chance()' onmouseover='player2.mouse[13]=1, color2()' onmouseout='player2.mouse[13]=0, color2()'>
+
+<tr><td>TOTAL
+  <td id='p115'><td id='p215'>
+</table>
+
+</body>
+
+
+</html>
